@@ -6,6 +6,10 @@ import gameEngine.Drawable;
 import gameEngine.Moveable;
 
 public class LevelEngine {
+	private Drawable[] board;
+	private ArrayList<Moveable> movingPieces;
+	private ArrayList<GamePiece> gamePieces;
+	private int playerLoc;
 	
 	public void createLevel(int l) {
 		

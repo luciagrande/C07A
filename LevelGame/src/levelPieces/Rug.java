@@ -3,6 +3,8 @@ package levelPieces;
 import gameEngine.Drawable;
 
 public class Rug implements Drawable {
+	private char symbol = 'R';
+	private int location = 4;
 	
 	public Rug() {
 		super();
@@ -10,7 +12,6 @@ public class Rug implements Drawable {
 
 	@Override
 	public void draw() {
-		// TODO Auto-generated method stub
-		
+		System.out.println(symbol);
 	}
 }
