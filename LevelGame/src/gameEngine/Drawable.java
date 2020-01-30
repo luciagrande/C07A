@@ -10,4 +10,5 @@ package gameEngine;
  */
 public interface Drawable {
 	public void draw();
+	int loc;
 }

@@ -4,14 +4,23 @@ import gameEngine.Drawable;
 
 public class Rug implements Drawable {
 	private char symbol = 'R';
-	private int location = 4;
+	private int location;
 	
-	public Rug() {
+	public char getSymbol() {
+		return symbol;
+	}
+
+	public int getLocation() {
+		return location;
+	}
+
+	public Rug(int location) {
 		super();
+		this.location = location;
 	}
 
 	@Override
 	public void draw() {
-		System.out.println(symbol);
+		System.out.print(symbol);
 	}
 }
