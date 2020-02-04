@@ -27,7 +27,7 @@ public class Player implements Drawable {
 	private int location;
 	private int levelPoints; 
 	private int damagePoints;
-	public enum PlayerStatus {DEAD, ADVANCING, OK; }
+	public enum PlayerStatus {DEAD, ADVANCING, OK, PROTECTED; }
 	private PlayerStatus playerStatus;
 	
 	/**
@@ -72,6 +72,7 @@ public class Player implements Drawable {
 		return false;
 	}
 	
+	
 	/**
 	 * Test to see if player is dead
 	 * 
@@ -86,6 +87,15 @@ public class Player implements Drawable {
 	 */
 	public void addPoint() {
 		levelPoints++;
+	}
+	
+	public void protect() {
+		playerStatus = PlayerStatus.PROTECTED;
+	}
+	
+	public boolean snipe() {
+		if(playerStatus == PlayerStatus.PROTECTED)return false;
+		else return true;
 	}
 	
 	/**

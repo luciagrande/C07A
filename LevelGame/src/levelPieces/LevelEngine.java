@@ -15,9 +15,11 @@ public class LevelEngine {
 			levelOne();
 			break;
 		case 2:
+			resetLevel();
 			levelTwo();
 			break;
 		case 3:
+			resetLevel();
 			levelThree();
 			break;
 		}
@@ -29,12 +31,18 @@ public class LevelEngine {
 		Rug r1 = new Rug(11);
 		Sniper s1 = new Sniper(0);
 		Treasure t = new Treasure(2);
-		Missle m = new Missle(3, true);
+		Missile m = new Missile(3, true);
+		Vest v = new Vest(7);
+		Door d = new Door (15);
+		
+		m.setInteractable(gamePieces);
 		
 		board[r1.getLocation()] = r1;
 		board[t.getLocation()]= t;
 		board[s1.getLocation()] = s1;
 		board[m.getLocation()]=m;
+		board[v.getLocation()]=v;
+		board[d.getLocation()]=d;
 		
 		movingPieces.add(s1);
 		movingPieces.add(m);
@@ -42,6 +50,8 @@ public class LevelEngine {
 		gamePieces.add(t);
 		gamePieces.add(s1);
 		gamePieces.add(m);
+		gamePieces.add(v);
+		gamePieces.add(d);
 	}
 	
 	public void levelTwo() {
@@ -62,7 +72,8 @@ public class LevelEngine {
 		Rug r1 = new Rug(11);
 		Sniper s1 = new Sniper(0);
 		Treasure t = new Treasure(2);
-		Missle m = new Missle(3, true);
+		Missile m = new Missile(3, true);
+		
 		
 		board[r1.getLocation()] = r1;
 		board[t.getLocation()]= t;
@@ -91,5 +102,12 @@ public class LevelEngine {
 		return (gameEngine.GameEngine.BOARD_SIZE / 2);
 	}
 	
+	public void resetLevel() {
+		for(int i=0; i<board.length; i++) {
+			board[i]=null;
+		}
+		movingPieces.clear();
+		gamePieces.clear();
+	}
 	
 }

@@ -27,7 +27,7 @@ public class GameEngine {
 	 * GameEngine will automatically play each level, starting with 1
 	 * through the number specified here. 
 	 */
-	public final static int NUM_LEVELS = 2;
+	public final static int NUM_LEVELS = 3;
 	// Keep track of the current level, starting with level 1
 	private int currentLevel;
 	// LevelEngine will create all the data structures for this level
@@ -122,10 +122,25 @@ public class GameEngine {
 					// can only be killed once
 					break;
 				}
+			
+			}
+			if (result == InteractionResult.PROTECT) {
+				player.protect();
+				System.out.println("\nYou are now protected from bullets!\n");
+
+			
 			}
 			if (result == InteractionResult.KILL) {
 				player.killed();
 				System.out.println("\nSomething just killed you!\n");
+				// can only be killed once
+				break;
+			}
+			if (result == InteractionResult.SNIPE) {
+				if(player.snipe())
+				System.out.println("\nSaved by the vest!\n");
+				else
+					System.out.println("\nYou dead!\n");
 				// can only be killed once
 				break;
 			}
