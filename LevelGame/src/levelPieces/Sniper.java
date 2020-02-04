@@ -14,13 +14,13 @@ public class Sniper extends GamePiece implements Moveable{
 
 	@Override
 	public InteractionResult interact(Drawable[] pieces, int playerLocation) {
-		//if( == PROTECTED);
-		if (Math.abs(this.getLocation() - playerLocation) <=1) {
+		if (Math.abs(this.getLocation() - playerLocation) <=2) {
 			return InteractionResult.SNIPE;
 		}
 		return null;
 	}
 
+	//moves the sniper two spots from where it is randomly
 	@Override
 	public void move(Drawable[] gameBoard, int playerLocation) {
 		Random rand = new Random();

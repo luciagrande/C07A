@@ -1,11 +1,12 @@
 package gameEngine;
+
 import java.util.ArrayList;
 
 import levelPieces.GamePiece;
 import levelPieces.LevelEngine;
 
 /**
- * Framework for LevelGame. 
+ * Framework for LevelGame.
  * 
  * @author Mark Baldwin
  * @author Cyndi Rader
@@ -16,24 +17,24 @@ import levelPieces.LevelEngine;
 
 public class GameEngine {
 	/**
-	 * Determines the size of the game board. 
+	 * Determines the size of the game board.
 	 * 
-	 * Board is a 1D structure. It is an odd number so player can start 
-	 * exactly in the middle if desired. 
+	 * Board is a 1D structure. It is an odd number so player can start exactly in
+	 * the middle if desired.
 	 */
 	public final static int BOARD_SIZE = 21;
 	/**
-	 * Number of levels defined for this game. 
-	 * GameEngine will automatically play each level, starting with 1
-	 * through the number specified here. 
+	 * Number of levels defined for this game. GameEngine will automatically play
+	 * each level, starting with 1 through the number specified here.
 	 */
 	public final static int NUM_LEVELS = 3;
 	// Keep track of the current level, starting with level 1
 	private int currentLevel;
 	// LevelEngine will create all the data structures for this level
-	private LevelEngine levels; 
-	// Each level has a 1D array for the board containing pieces that can be drawn or null for empty
-	private Drawable [] gameBoard;
+	private LevelEngine levels;
+	// Each level has a 1D array for the board containing pieces that can be drawn
+	// or null for empty
+	private Drawable[] gameBoard;
 	// Only some pieces can move.
 	private ArrayList<Moveable> movingPieces;
 	// Only game pieces interact
@@ -42,20 +43,18 @@ public class GameEngine {
 	private Player player;
 
 	/**
-	 * Constructor for GameEngine.   
-	 * It creates a new LevelEngine
+	 * Constructor for GameEngine. It creates a new LevelEngine
 	 */
 	public GameEngine() {
-		levels = new LevelEngine(); 
+		levels = new LevelEngine();
 	}
-	
-	
+
 	/**
-	 * Should be called at the beginning of every level (including beginning 
-	 * of program) to set up the data for that level.
+	 * Should be called at the beginning of every level (including beginning of
+	 * program) to set up the data for that level.
 	 * 
-	 * @param levelNum The number of the level to be loaded. Level number should
-	 * be from 1 to GameEngine.NUM_LEVELS
+	 * @param levelNum The number of the level to be loaded. Level number should be
+	 *                 from 1 to GameEngine.NUM_LEVELS
 	 */
 	public void setupLevel(int levelNum) {
 		// LevelEngine needs to create the specified level
@@ -70,14 +69,14 @@ public class GameEngine {
 	}
 
 	/**
-	 * Prints a representation of the board. 
-	 * A null represents an empty space (drawn as just a space). 
-	 * All other objects must be Drawable, so that the draw method can be used.
+	 * Prints a representation of the board. A null represents an empty space (drawn
+	 * as just a space). All other objects must be Drawable, so that the draw method
+	 * can be used.
 	 */
 	public void displayBoard() {
-		for (int i=0; i<gameBoard.length; i++) {
+		for (int i = 0; i < gameBoard.length; i++) {
 			// Ensure player is always drawn
-			if (i == player.getLocation()) 
+			if (i == player.getLocation())
 				player.draw();
 			else if (gameBoard[i] == null)
 				System.out.print(' ');
@@ -89,46 +88,43 @@ public class GameEngine {
 	}
 
 	/**
-	 * Calls the move method for each Moveable piece. 
-	 * All Moveable pieces should be placed in the movingPieces list. 
-	 * Pieces will move at the end of the level (after user has selected option, 
-	 * to prepare for the next level). 
+	 * Calls the move method for each Moveable piece. All Moveable pieces should be
+	 * placed in the movingPieces list. Pieces will move at the end of the level
+	 * (after user has selected option, to prepare for the next level).
 	 */
 	public void movePieces() {
 		for (Moveable piece : movingPieces) {
-			piece.move(gameBoard, player.getLocation());		
-		}	
+			piece.move(gameBoard, player.getLocation());
+		}
 	}
 
 	/**
-	 * Calls the interact method for each interactingPiece (i.e., GamePiece)
-	 * All interacting pieces should be placed in the interactingPieces
-	 * list. GameEngine will display a message and take the appropriate action based on the 
-	 * InteractionResult (e.g., sets player status to DEAD if the 
-	 * result is InteractionResult.KILL). 
+	 * Calls the interact method for each interactingPiece (i.e., GamePiece) All
+	 * interacting pieces should be placed in the interactingPieces list. GameEngine
+	 * will display a message and take the appropriate action based on the
+	 * InteractionResult (e.g., sets player status to DEAD if the result is
+	 * InteractionResult.KILL).
 	 */
 	public void interaction() {
 		for (GamePiece piece : interactingPieces) {
-			InteractionResult result = piece.interact(gameBoard, player.getLocation());		
+			InteractionResult result = piece.interact(gameBoard, player.getLocation());
 			if (result == InteractionResult.GET_POINT) {
-				player.addPoint(); 
+				player.addPoint();
 				System.out.println("\nYou just won a prize!\n");
 			}
-			if (result == InteractionResult.HIT) {
-				player.takeDamage();
-				System.out.println("\nYou just took a hit!\n");
-				if (player.isDead()) {
-					System.out.println("Too many hits, you are dead");
-					// can only be killed once
-					break;
-				}
-			
-			}
+			/*
+			 * if (result == InteractionResult.HIT) { player.takeDamage();
+			 * System.out.println("\nYou just took a hit!\n"); if (player.isDead()) {
+			 * System.out.println("Too many hits, you are dead"); // can only be killed once
+			 * break; }
+			 * 
+			 * 
+			 * }
+			 */
 			if (result == InteractionResult.PROTECT) {
 				player.protect();
 				System.out.println("\nYou are now protected from bullets!\n");
 
-			
 			}
 			if (result == InteractionResult.KILL) {
 				player.killed();
@@ -137,10 +133,12 @@ public class GameEngine {
 				break;
 			}
 			if (result == InteractionResult.SNIPE) {
-				if(player.snipe())
-				System.out.println("\nSaved by the vest!\n");
-				else
+				if (!player.snipe())
+					System.out.println("\nSaved by the vest!\n");
+				else {
 					System.out.println("\nYou dead!\n");
+					player.killed();
+					}
 				// can only be killed once
 				break;
 			}
@@ -150,35 +148,34 @@ public class GameEngine {
 				// can only advance once
 				break;
 			}
-		}			
+		}
 	}
-	
+
 	/**
-	 * Determines if this level is complete. 
-	 * Will be complete if player is advancing (either by interaction 
-	 * with a game piece or accumulating points) or dead (either by 
-	 * interaction with a game piece or accumulating too many hits).
+	 * Determines if this level is complete. Will be complete if player is advancing
+	 * (either by interaction with a game piece or accumulating points) or dead
+	 * (either by interaction with a game piece or accumulating too many hits).
 	 * 
 	 * @return true if player advances or was killed, false otherwise
 	 */
 	public boolean levelFinished() {
 		if (player.canAdvance()) {
-			if (currentLevel <  NUM_LEVELS)
+			if (currentLevel < NUM_LEVELS)
 				System.out.println("Advancing to next level...\n");
 			return true;
 		}
 		if (player.isDead()) {
 			return true;
 		}
-		return false;	
+		return false;
 	}
 
 	/**
-	 * Completes the game play for one level.
-	 * During each round, the board is displayed, the player enters a movement
-	 * option, the player's location is updated, then the player interacts with
-	 * any pieces in the interactingPieces list. Moveable piece locations are then 
-	 * updated for the next round. This continues until the level is finished. 
+	 * Completes the game play for one level. During each round, the board is
+	 * displayed, the player enters a movement option, the player's location is
+	 * updated, then the player interacts with any pieces in the interactingPieces
+	 * list. Moveable piece locations are then updated for the next round. This
+	 * continues until the level is finished.
 	 */
 	public void doOneLevel() {
 		while (!levelFinished()) {
@@ -191,9 +188,8 @@ public class GameEngine {
 	}
 
 	/**
-	 * Plays the game. 
-	 * Continues until either all levels have been completed or the player 
-	 * has been killed. Program exits when game is over. 
+	 * Plays the game. Continues until either all levels have been completed or the
+	 * player has been killed. Program exits when game is over.
 	 */
 	public void playGame() {
 		// Give player a default location of 0
@@ -211,9 +207,9 @@ public class GameEngine {
 			System.out.println("Congratulations, you won!");
 		System.exit(0);
 	}
-	
+
 	/**
-	 * Driver for the game.   Creates game and plays it.
+	 * Driver for the game. Creates game and plays it.
 	 * 
 	 * @param args Unused
 	 */

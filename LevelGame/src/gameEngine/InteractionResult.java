@@ -7,7 +7,8 @@ package gameEngine;
  * @author Cyndi Rader
  * 
  */
+//switched hit with snipe
 public enum InteractionResult {
-	HIT, KILL, ADVANCE, GET_POINT, NONE, PROTECT, SNIPE;
+	KILL, ADVANCE, GET_POINT, NONE, PROTECT, SNIPE;
 
 }

@@ -23,13 +23,14 @@ public class Missile extends GamePiece implements Moveable{
 
 	@Override
 	public void move(Drawable[] gameBoard, int playerLocation) {
-		
+		//bounces back and forth across the game board
 		if(trajectory) {
 			int m = 1;
 			while(this.getLocation() + m <gameBoard.length && gameBoard[this.getLocation() + m] != null && gameBoard[this.getLocation() + m].getClass() != Vest.class ) m++;
 			if(this.getLocation() + m >=gameBoard.length) trajectory = !trajectory; 
 			else {
 				if(gameBoard[this.getLocation() + m] != null) {
+					//gets rid of vest if it hits it
 					pieces.remove(gameBoard[this.getLocation() + m]);
 				}
 				
@@ -44,7 +45,8 @@ public class Missile extends GamePiece implements Moveable{
 			while(this.getLocation() - m >=0 && gameBoard[this.getLocation() - m] != null && gameBoard[this.getLocation() - m].getClass() != Vest.class) m++;
 			if(this.getLocation() - m <0) trajectory = !trajectory;
 			else {
-				if(gameBoard[this.getLocation() + m] != null) {
+				if(gameBoard[this.getLocation() -m] != null) {
+					//gets rid of vest if it hits it
 					pieces.remove(gameBoard[this.getLocation() + m]);
 				}
 				gameBoard[this.getLocation() -m ]= this;
@@ -55,6 +57,7 @@ public class Missile extends GamePiece implements Moveable{
 		
 	}
 	
+	//gets gamepieces
 	public void setInteractable(ArrayList<GamePiece> pieces) {
 		Missile.pieces = pieces;
 	}
