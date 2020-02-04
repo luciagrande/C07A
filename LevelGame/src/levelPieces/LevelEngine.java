@@ -1,8 +1,6 @@
 package levelPieces;
 
 import java.util.ArrayList;
-import gameEngine.Player;
-
 import gameEngine.Drawable;
 import gameEngine.Moveable;
 
@@ -10,17 +8,43 @@ public class LevelEngine {
 	private Drawable[] board = new Drawable[gameEngine.GameEngine.BOARD_SIZE];
 	private ArrayList<Moveable> movingPieces = new ArrayList<Moveable>();
 	private ArrayList<GamePiece> gamePieces= new ArrayList<GamePiece>();;
-	private int playerLoc;
 	
 	public void createLevel(int l) {
 		switch(l) {
 		case 1:
 			levelOne();
+			break;
+		case 2:
+			levelTwo();
+			break;
+		case 3:
+			levelThree();
+			break;
 		}
+		
 	
 	}
 	
 	public void levelOne() {
+		Rug r1 = new Rug(11);
+		Sniper s1 = new Sniper(0);
+		Treasure t = new Treasure(2);
+		Missle m = new Missle(3, true);
+		
+		board[r1.getLocation()] = r1;
+		board[t.getLocation()]= t;
+		board[s1.getLocation()] = s1;
+		board[m.getLocation()]=m;
+		
+		movingPieces.add(s1);
+		movingPieces.add(m);
+		
+		gamePieces.add(t);
+		gamePieces.add(s1);
+		gamePieces.add(m);
+	}
+	
+	public void levelTwo() {
 		Rug r1 = new Rug(11);
 		Sniper s1 = new Sniper(0);
 		Treasure t = new Treasure(2);
@@ -32,6 +56,23 @@ public class LevelEngine {
 		movingPieces.add(s1);
 		gamePieces.add(t);
 		gamePieces.add(s1);
+	}
+	
+	public void levelThree() {
+		Rug r1 = new Rug(11);
+		Sniper s1 = new Sniper(0);
+		Treasure t = new Treasure(2);
+		Missle m = new Missle(3, true);
+		
+		board[r1.getLocation()] = r1;
+		board[t.getLocation()]= t;
+		board[s1.getLocation()] = s1;
+		board[m.getLocation()]=m;
+		
+		movingPieces.add(s1);
+		gamePieces.add(t);
+		gamePieces.add(s1);
+		gamePieces.add(m);
 	}
 
 	public Drawable[] getBoard() {
