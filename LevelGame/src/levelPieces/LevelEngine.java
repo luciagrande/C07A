@@ -57,15 +57,19 @@ public class LevelEngine {
 	public void levelTwo() {
 		Rug r1 = new Rug(11);
 		Sniper s1 = new Sniper(0);
-		Treasure t = new Treasure(2);
+		Treasure t = new Treasure(14);
+		Door d = new Door (15);
+		
 		
 		board[r1.getLocation()] = r1;
 		board[t.getLocation()]= t;
 		board[s1.getLocation()] = s1;
+		board[d.getLocation()]=d;
 		
 		movingPieces.add(s1);
 		gamePieces.add(t);
 		gamePieces.add(s1);
+		gamePieces.add(d);
 	}
 	
 	public void levelThree() {
@@ -73,17 +77,20 @@ public class LevelEngine {
 		Sniper s1 = new Sniper(0);
 		Treasure t = new Treasure(2);
 		Missile m = new Missile(3, true);
+		Door d = new Door (15);
 		
 		
 		board[r1.getLocation()] = r1;
 		board[t.getLocation()]= t;
 		board[s1.getLocation()] = s1;
 		board[m.getLocation()]=m;
+		board[d.getLocation()]=d;
 		
 		movingPieces.add(s1);
 		gamePieces.add(t);
 		gamePieces.add(s1);
 		gamePieces.add(m);
+		gamePieces.add(d);
 	}
 
 	public Drawable[] getBoard() {
