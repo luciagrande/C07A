@@ -54,7 +54,7 @@ public abstract class GamePiece implements Drawable {
 	public int getLocation() {
 		return location;
 	}
-	
+
 	public void setLocation(int newLocation) {
 		// Ensure the location remains on the board
 		if (newLocation >= 0 && newLocation < GameEngine.BOARD_SIZE)

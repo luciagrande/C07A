@@ -1,3 +1,4 @@
+//Authors: Liam Morrissey and Lucy Grande
 package levelPieces;
 
 import gameEngine.Drawable;
@@ -33,11 +34,11 @@ public class Missile extends GamePiece implements Moveable{
 					//gets rid of vest if it hits it
 					pieces.remove(gameBoard[this.getLocation() + m]);
 				}
-				
+
 				gameBoard[this.getLocation() +m ]= this;
 				gameBoard[this.getLocation()] = null;
 				this.setLocation(this.getLocation() + m);
-				
+
 			}
 		}
 		else {
@@ -54,9 +55,9 @@ public class Missile extends GamePiece implements Moveable{
 				this.setLocation(this.getLocation() - m);
 			}
 		}
-		
+
 	}
-	
+
 	//gets gamepieces
 	public void setInteractable(ArrayList<GamePiece> pieces) {
 		Missile.pieces = pieces;

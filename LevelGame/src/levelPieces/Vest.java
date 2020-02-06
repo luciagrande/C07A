@@ -1,3 +1,4 @@
+//Authors: Liam Morrissey and Lucy Grande
 package levelPieces;
 
 import gameEngine.Drawable;
@@ -11,11 +12,11 @@ public class Vest extends GamePiece  {
 
 	@Override
 	public InteractionResult interact(Drawable[] pieces, int playerLocation) {
-		
+		//stops from damaging when attacked by sniper
 		if(playerLocation==this.getLocation()) return InteractionResult.PROTECT;
 		return null;
 	}
-	
-	
+
+
 
 }

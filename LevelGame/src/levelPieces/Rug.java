@@ -1,3 +1,4 @@
+//Authors: Liam Morrissey and Lucy Grande
 package levelPieces;
 
 import gameEngine.Drawable;
@@ -5,7 +6,7 @@ import gameEngine.Drawable;
 public class Rug implements Drawable {
 	private char symbol = 'R';
 	private int location;
-	
+
 	public char getSymbol() {
 		return symbol;
 	}

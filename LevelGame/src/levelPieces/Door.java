@@ -1,3 +1,4 @@
+//Authors: Liam Morrissey and Lucy Grande
 package levelPieces;
 
 import gameEngine.Drawable;
@@ -9,6 +10,7 @@ public class Door extends GamePiece {
 		super('D', location);
 	}
 
+	//Advances player
 	@Override
 	public InteractionResult interact(Drawable[] pieces, int playerLocation) {
 		if(playerLocation-this.getLocation() == 0) return InteractionResult.ADVANCE;

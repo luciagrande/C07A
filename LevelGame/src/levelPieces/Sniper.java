@@ -1,3 +1,4 @@
+//Authors: Liam Morrissey and Lucy Grande
 package levelPieces;
 
 import gameEngine.Drawable;
@@ -12,6 +13,7 @@ public class Sniper extends GamePiece implements Moveable{
 		super('S', location);
 	}
 
+	//kills non-protected player
 	@Override
 	public InteractionResult interact(Drawable[] pieces, int playerLocation) {
 		if (Math.abs(this.getLocation() - playerLocation) <=2) {

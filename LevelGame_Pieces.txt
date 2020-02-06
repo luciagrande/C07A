@@ -1,0 +1,17 @@
+Authors: Lucia Grande + Liam Morrissey
+
+	•	implements Drawable (no interaction, does not extend GamePiece)
+		⁃	Rug
+	•	extends GamePiece, implements Moveable
+		⁃	Sniper: moves within a +/- 2 range around board. If it lands within 2 spaces of the player, it will kill them, unless the player has gotten the vest. 
+		⁃	Missile: moves from one side to the other, space by space. Only interacts with vest and player. If lands on vest, destroys vest. If lands on player, kills you. 
+	•	extends GamePiece, various InteractionResult
+		⁃	KILL:  Missile (same square)
+		⁃	PROTECT: Vest (player lands on same location)
+		⁃	ADVANCE: Door (same location)
+		⁃	SNIPE: Sniper (within 2)
+		⁃	GET_POINT: Treasure (same location)
+		⁃	NONE: Rug
+
+
+

@@ -1,3 +1,4 @@
+//Authors: Liam Morrissey and Lucy Grande
 package levelPieces;
 
 import gameEngine.Drawable;
@@ -9,6 +10,7 @@ public class Treasure extends GamePiece {
 		super('T',location);
 	}
 
+	//gets player closer to advancement
 	@Override
 	public InteractionResult interact(Drawable[] pieces, int playerLocation) {
 		if (this.getLocation() - playerLocation == 0) {

@@ -138,7 +138,7 @@ public class GameEngine {
 				else {
 					System.out.println("\nYou dead!\n");
 					player.killed();
-					}
+				}
 				// can only be killed once
 				break;
 			}
