@@ -19,15 +19,18 @@ public class Sniper extends GamePiece implements Moveable{
 		if (Math.abs(this.getLocation() - playerLocation) <=2) {
 			return InteractionResult.SNIPE;
 		}
-		return null;
+		return InteractionResult.NONE;
 	}
 
 	//moves the sniper two spots from where it is randomly
 	@Override
 	public void move(Drawable[] gameBoard, int playerLocation) {
 		Random rand = new Random();
+		
 		int m = rand.nextInt() % 3;
+		
 		if(m+this.getLocation()<0)m = m+gameBoard.length;
+		
 		while(gameBoard[(this.getLocation()+m)%gameBoard.length]!= null) m++;
 		gameBoard[(this.getLocation()+m)%gameBoard.length] = this;
 		gameBoard[this.getLocation()] = null;

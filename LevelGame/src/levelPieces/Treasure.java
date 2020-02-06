@@ -16,7 +16,7 @@ public class Treasure extends GamePiece {
 		if (this.getLocation() - playerLocation == 0) {
 			return InteractionResult.GET_POINT;
 		}
-		return null;
+		return InteractionResult.NONE;
 	}
 
 }

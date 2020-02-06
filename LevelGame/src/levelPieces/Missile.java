@@ -19,7 +19,7 @@ public class Missile extends GamePiece implements Moveable{
 	@Override
 	public InteractionResult interact(Drawable[] pieces, int playerLocation) {
 		if(playerLocation == this.getLocation()) return InteractionResult.KILL;
-		else return null;
+		else return InteractionResult.NONE;
 	}
 
 	@Override

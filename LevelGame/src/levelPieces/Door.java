@@ -14,7 +14,7 @@ public class Door extends GamePiece {
 	@Override
 	public InteractionResult interact(Drawable[] pieces, int playerLocation) {
 		if(playerLocation-this.getLocation() == 0) return InteractionResult.ADVANCE;
-		return null;
+		return InteractionResult.NONE;
 	}
 
 }
